@@ -10,6 +10,13 @@ public class Product {
     private String category;
     private String imageUrl;
     private Integer price;
+    private Integer stock;
+    private String description;
+    private Date createDate;
+    private Date lastModifieDate;
+
+    public Product() {
+    }
 
     public void setProductId(Integer productId) {
         this.productId = productId;
@@ -48,7 +55,7 @@ public class Product {
     }
 
     public Date getLasrModifieDate() {
-        return lasrModifieDate;
+        return lastModifieDate;
     }
 
     public void setProductName(String productName) {
@@ -79,13 +86,10 @@ public class Product {
         this.createDate = createDate;
     }
 
-    public void setLasrModifieDate(Date lasrModifieDate) {
-        this.lasrModifieDate = lasrModifieDate;
+    public void setLastModifieDate(Date lasrModifieDate) {
+        this.lastModifieDate = lasrModifieDate;
     }
 
-    private Integer stock;
-    private String description;
-    private Date createDate;
-    private Date lasrModifieDate;
+
 
 }
