@@ -1,5 +1,7 @@
 package com.one1.mall.model;
 
+import com.one1.mall.constant.ProductCategory;
+
 import java.util.Date;
 
 public class Product {
@@ -7,7 +9,7 @@ public class Product {
 
     private Integer productId;
     private  String productName;
-    private String category;
+    private ProductCategory category;
     private String imageUrl;
     private Integer price;
     private Integer stock;
@@ -30,7 +32,7 @@ public class Product {
         return productName;
     }
 
-    public String getCategory() {
+    public ProductCategory getCategory() {
         return category;
     }
 
@@ -62,7 +64,7 @@ public class Product {
         this.productName = productName;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ProductCategory category) {
         this.category = category;
     }
 
