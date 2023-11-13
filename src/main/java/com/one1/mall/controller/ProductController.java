@@ -1,14 +1,14 @@
 package com.one1.mall.controller;
 
+import com.one1.mall.dto.ProductRequest;
 import com.one1.mall.model.Product;
 import com.one1.mall.server.ProductService;
+import jakarta.validation.Valid;
 import org.apache.catalina.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
@@ -24,4 +24,11 @@ public class ProductController {
               }
 
     }
+    @PostMapping("/products")
+    public  ResponseEntity<Product> createProduct(@RequestBody @Valid  ProductRequest productRequest){
+              Integer productId = prodService.createProduct(productRequest);
+              Product product = prodService.getProductById(productId);
+              return  ResponseEntity.status(HttpStatus.CREATED).body(product);
+    }
+
 }
