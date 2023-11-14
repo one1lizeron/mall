@@ -22,4 +22,7 @@ public class ProductServiceImpl implements ProductService {
         return productDao.getProductById(productId);
     }
 
+    public void updateProduct(Integer productId,ProductRequest productRequest){
+        productDao.updateProduct(productId,productRequest);
+    }
 }
