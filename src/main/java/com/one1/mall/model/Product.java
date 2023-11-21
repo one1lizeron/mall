@@ -15,7 +15,7 @@ public class Product {
     private Integer stock;
     private String description;
     private Date createDate;
-    private Date lastModifieDate;
+    private Date lastModifiedDate;
 
     public Product() {
     }
@@ -56,8 +56,8 @@ public class Product {
         return createDate;
     }
 
-    public Date getLasrModifieDate() {
-        return lastModifieDate;
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
     }
 
     public void setProductName(String productName) {
@@ -88,8 +88,8 @@ public class Product {
         this.createDate = createDate;
     }
 
-    public void setLastModifieDate(Date lasrModifieDate) {
-        this.lastModifieDate = lasrModifieDate;
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
 
