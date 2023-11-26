@@ -1,5 +1,6 @@
 package com.one1.mall.controller;
 
+import com.one1.mall.constant.ProductCategory;
 import com.one1.mall.dto.ProductRequest;
 import com.one1.mall.model.Product;
 import com.one1.mall.server.ProductService;
@@ -10,10 +11,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ProductController {
     @Autowired
     private ProductService prodService;
+    @GetMapping("/products")
+    public  ResponseEntity<List<Product>> getProducts(
+            @RequestParam(required = false)  ProductCategory category,
+            @RequestParam(required = false) String search
+    ){
+
+        List<Product> productList = prodService.getProducts(category,search);
+        return ResponseEntity.status(HttpStatus.OK).body(productList);
+    }
     @GetMapping("/products/{productId}")
     public ResponseEntity<Product> getProduct(@PathVariable Integer productId){
               Product product = prodService.getProductById(productId);
