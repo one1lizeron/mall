@@ -2,6 +2,7 @@ package com.one1.mall.server.Impl;
 
 import com.one1.mall.constant.ProductCategory;
 import com.one1.mall.dao.ProductDao;
+import com.one1.mall.dto.ProductQueryParams;
 import com.one1.mall.dto.ProductRequest;
 import com.one1.mall.model.Product;
 import com.one1.mall.server.ProductService;
@@ -16,8 +17,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts(ProductCategory category,String search){
-        return productDao.getProducts(category,search);
+    public List<Product> getProducts(ProductQueryParams productQueryParams){
+        return productDao.getProducts(productQueryParams);
     }
 
 

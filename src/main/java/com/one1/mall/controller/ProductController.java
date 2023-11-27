@@ -1,6 +1,7 @@
 package com.one1.mall.controller;
 
 import com.one1.mall.constant.ProductCategory;
+import com.one1.mall.dto.ProductQueryParams;
 import com.one1.mall.dto.ProductRequest;
 import com.one1.mall.model.Product;
 import com.one1.mall.server.ProductService;
@@ -20,10 +21,15 @@ public class ProductController {
     @GetMapping("/products")
     public  ResponseEntity<List<Product>> getProducts(
             @RequestParam(required = false)  ProductCategory category,
-            @RequestParam(required = false) String search
+            @RequestParam(required = false) String search,
+            @RequestParam(defaultValue = "created_date") String orderBy,
+            @RequestParam(defaultValue = "desc") String sort
     ){
+        ProductQueryParams productQueryParams = new ProductQueryParams();
+        productQueryParams.setCategory(category);
+        productQueryParams.setSearch(search);
 
-        List<Product> productList = prodService.getProducts(category,search);
+        List<Product> productList = prodService.getProducts(productQueryParams);
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
     @GetMapping("/products/{productId}")
