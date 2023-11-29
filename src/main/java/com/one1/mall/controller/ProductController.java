@@ -28,6 +28,8 @@ public class ProductController {
         ProductQueryParams productQueryParams = new ProductQueryParams();
         productQueryParams.setCategory(category);
         productQueryParams.setSearch(search);
+        productQueryParams.setOrderBy(orderBy);
+        productQueryParams.setSort(sort);
 
         List<Product> productList = prodService.getProducts(productQueryParams);
         return ResponseEntity.status(HttpStatus.OK).body(productList);
