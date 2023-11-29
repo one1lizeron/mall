@@ -7,6 +7,8 @@ public class ProductQueryParams {
     private String search;
 
     private String orderBy;
+    private Integer limit;
+    private Integer offset;
 
     public void setOrderBy(String orderBy) {
         this.orderBy = orderBy;
@@ -36,6 +38,22 @@ public class ProductQueryParams {
 
     public void setSearch(String search) {
         this.search = search;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public Integer getOffset() {
+        return offset;
     }
 
     public String getSearch() {
