@@ -50,14 +50,7 @@ public class ProductDaoImpl implements ProductDao {
     public  List<Product> getProducts(ProductQueryParams productQueryParams){
         String sql = "SELECT  product_id,product_name,category,image_url,price,stock, description,created_date,last_modified_date from product WHERE 1=1";
         Map<String, Object> map = new HashMap<>();
-        if (productQueryParams.getCategory()!=null){
-            sql=sql+ " AND category=:category";
-            map.put("category",productQueryParams.getCategory().name());
-        }
-        if(productQueryParams.getSearch() !=null){
-            sql=sql+ " AND product_name LIKE :search";
-            map.put("search","%"+productQueryParams.getSearch()+"%");
-        }
+        sql = addFilterSql(sql,map,productQueryParams);
         sql = sql + " ORDER BY " + productQueryParams.getOrderBy() + " " + productQueryParams.getSort();
         sql = sql + " LIMIT :limit OFFSET :offset";
         map.put("limit",productQueryParams.getLimit());
@@ -110,7 +103,11 @@ public class ProductDaoImpl implements ProductDao {
     public Integer countProduct(ProductQueryParams productQueryParams) {
        String sql = "SELECT count(1) FROM product WHERE 1=1";
         Map<String, Object> map = new HashMap<>();
-
+        sql = addFilterSql(sql,map,productQueryParams);
+        Integer total = namedParameterJdbcTemplate.queryForObject(sql,map,Integer.class);
+        return total;
+    }
+    private  String addFilterSql(String sql, Map<String, Object> map, ProductQueryParams productQueryParams){
         if (productQueryParams.getCategory()!=null){
             sql=sql+ " AND category=:category";
             map.put("category",productQueryParams.getCategory().name());
@@ -119,8 +116,7 @@ public class ProductDaoImpl implements ProductDao {
             sql=sql+ " AND product_name LIKE :search";
             map.put("search","%"+productQueryParams.getSearch()+"%");
         }
-        Integer total = namedParameterJdbcTemplate.queryForObject(sql,map,Integer.class);
-        return total;
+        return sql;
     }
 
 
