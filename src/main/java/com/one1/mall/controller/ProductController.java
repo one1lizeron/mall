@@ -5,6 +5,7 @@ import com.one1.mall.dto.ProductQueryParams;
 import com.one1.mall.dto.ProductRequest;
 import com.one1.mall.model.Product;
 import com.one1.mall.server.ProductService;
+import com.one1.mall.util.Page;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -22,7 +23,7 @@ public class ProductController {
     @Autowired
     private ProductService prodService;
     @GetMapping("/products")
-    public  ResponseEntity<List<Product>> getProducts(
+    public  ResponseEntity<Page<Product>> getProducts(
             @RequestParam(required = false)  ProductCategory category,
             @RequestParam(required = false) String search,
             @RequestParam(defaultValue = "created_date") String orderBy,
@@ -41,7 +42,14 @@ public class ProductController {
         productQueryParams.setOffset(offset);
 
         List<Product> productList = prodService.getProducts(productQueryParams);
-        return ResponseEntity.status(HttpStatus.OK).body(productList);
+        Integer total = prodService.countProduct(productQueryParams);
+        //分頁
+        Page<Product> page = new Page<>();
+        page.setLimit(limit);
+        page.setOffset(offset);
+        page.setTotal(total);
+        page.setResults(productList);
+        return ResponseEntity.status(HttpStatus.OK).body(page);
     }
     @GetMapping("/products/{productId}")
     public ResponseEntity<Product> getProduct(@PathVariable Integer productId){
