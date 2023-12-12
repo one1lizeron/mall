@@ -1,11 +1,16 @@
 package com.one1.mall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class User {
 
     private  Integer userId;
+    @JsonProperty("e_mall")
     private String email;
+    @JsonIgnore
     private String password;
 
     public Integer getUserId() {

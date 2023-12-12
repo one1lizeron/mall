@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 @Component
 public class UserServiceImpl implements UserService {
 
-    private final static Logger log = (Logger) LoggerFactory.getLogger(UserServiceImpl.class);
+    //private final static Logger log = (Logger) LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserDao userDao;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public Integer register(UserRegisterRequest userRegisterRequest){
         User user = userDao.getUserByEmail(userRegisterRequest.getEmail());
         if (user != null) {
-            log.warning("email has" + userRegisterRequest.getEmail() +"been registered");
+            //log.warning("email has" + userRegisterRequest.getEmail() +"been registered");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
        return  userDao.createUser(userRegisterRequest);
