@@ -1,6 +1,7 @@
 package com.one1.mall.server.Impl;
 
 import com.one1.mall.dao.UserDao;
+import com.one1.mall.dto.UserLoginRequest;
 import com.one1.mall.dto.UserRegisterRequest;
 import com.one1.mall.model.User;
 import com.one1.mall.server.UserService;
@@ -35,6 +36,25 @@ public class UserServiceImpl implements UserService {
         }
        return  userDao.createUser(userRegisterRequest);
    }
+
+   public User login(UserLoginRequest userLoginRequest){
+       User user = userDao.getUserByEmail(userLoginRequest.getEmail());
+
+       if (user == null){
+
+           //log.warn("email {} is not register",userLoginRequest.setEmail());
+           throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+       }
+       if (user.getPassword() == userLoginRequest.getPassword()){
+
+           return user;
+       }
+       else {
+           //log.warn("password is not valid")
+           throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+       }
+   }
+
 
 
 }

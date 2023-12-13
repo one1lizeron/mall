@@ -1,5 +1,6 @@
 package com.one1.mall.controller;
 
+import com.one1.mall.dto.UserLoginRequest;
 import com.one1.mall.dto.UserRegisterRequest;
 import com.one1.mall.model.User;
 import com.one1.mall.server.UserService;
@@ -24,4 +25,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
 
     }
+
+    @PostMapping("/users/login")
+    public  ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
+        User user = userService.login(userLoginRequest);
+
+        return  ResponseEntity.status(HttpStatus.OK).body(user);
+
+    }
+
 }

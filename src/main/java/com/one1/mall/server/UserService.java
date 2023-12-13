@@ -1,5 +1,6 @@
 package com.one1.mall.server;
 
+import com.one1.mall.dto.UserLoginRequest;
 import com.one1.mall.dto.UserRegisterRequest;
 import com.one1.mall.model.User;
 
@@ -9,4 +10,6 @@ public interface UserService {
 
 
     public Integer register(UserRegisterRequest userRegisterRequest);
+
+    public  User login(UserLoginRequest userLoginRequest);
 }
