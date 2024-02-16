@@ -1,6 +1,8 @@
 package com.one1.mall.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     private  Integer orderId;
@@ -8,6 +10,20 @@ public class Order {
     private Integer totalAmount;
     private Date createdDate;
     private Date lastModifieDate;
+
+    private List<OrderItem> orderItemList;
+
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
+    }
+
+
+
 
     public Integer getOrderId() {
         return orderId;
@@ -48,4 +64,6 @@ public class Order {
     public void setLastModifieDate(Date lastModifieDate) {
         this.lastModifieDate = lastModifieDate;
     }
+
+
 }
